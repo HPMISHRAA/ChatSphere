@@ -23,10 +23,14 @@ function Login() {
       setIsLoading(true);
       const response = await googleAuth({ tokenId: res.tokenId });
       setIsLoading(false);
-      if (response.data.token) {
+      if (response && response.data && response.data.token) {
         localStorage.setItem("userToken", response.data.token);
         window.location.href = "/chats";
+      } else {
+        alert("Google Login Failed! Response: " + JSON.stringify(response ? response.data : "Network Error / CORS / Backend 500"));
       }
+    } else {
+      alert("Google profile missing from response!");
     }
   };
 
