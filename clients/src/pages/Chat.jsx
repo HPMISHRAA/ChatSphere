@@ -108,7 +108,7 @@ function Chat(props) {
       socket.off("user offline", handleUserOffline);
       socket.off("group updated", handleGroupUpdated);
     };
-  }, [messages, notifications, selectedChatCompare, dispatch]);
+  }, [messages, notifications, dispatch]);
 
   useEffect(() => {
     const isValid = async () => {
