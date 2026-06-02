@@ -34,6 +34,7 @@ const io = new Server.Server(server, {
     origin: process.env.BASE_URL || '*',
   },
 });
+app.set('socketio', io);
 const onlineUsers = new Map();
 
 io.on('connection', (socket) => {

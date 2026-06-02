@@ -93,14 +93,20 @@ function Chat(props) {
       dispatch(updateUserPresence({ userId, isOnline: false, lastSeen: new Date().toISOString() }));
     };
 
+    const handleGroupUpdated = () => {
+      dispatch(fetchChats());
+    };
+
     socket.on("message recieved", handleMessageReceived);
     socket.on("user online", handleUserOnline);
     socket.on("user offline", handleUserOffline);
+    socket.on("group updated", handleGroupUpdated);
 
     return () => {
       socket.off("message recieved", handleMessageReceived);
       socket.off("user online", handleUserOnline);
       socket.off("user offline", handleUserOffline);
+      socket.off("group updated", handleGroupUpdated);
     };
   }, [messages, notifications, selectedChatCompare, dispatch]);
 

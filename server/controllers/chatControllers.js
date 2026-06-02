@@ -121,6 +121,12 @@ export const addToGroup = async (req, res) => {
     
     await Chat.findByIdAndUpdate(chatId, { latestMessage: sysMsg });
 
+    // Emit group updated event to the room
+    const io = req.app.get('socketio');
+    if (io) {
+      io.in(chatId.toString()).emit('group updated');
+    }
+
     res.status(200).send(chat);
   } else {
     res.status(409).send('user already exists');
@@ -144,6 +150,13 @@ export const removeFromGroup = async (req, res) => {
           isSystemMessage: true
         });
         await Chat.findByIdAndUpdate(chatId, { latestMessage: sysMsg });
+        
+        // Emit group updated event to the room
+        const io = req.app.get('socketio');
+        if (io) {
+          io.in(chatId.toString()).emit('group updated');
+        }
+
         res.status(200).send(chat);
       })
       .catch((e) => res.status(404).send(e));

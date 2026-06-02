@@ -65,7 +65,7 @@ function Login() {
   useEffect(() => {
     const initClient = () => {
       gapi.client.init({
-        clientId: process.env.REACT_APP_CLIENT_ID,
+        clientId: process.env.REACT_APP_GOOGLE_CLIENT_ID,
         scope: ''
       });
     };
@@ -148,7 +148,7 @@ function Login() {
           </div>
 
           <GoogleLogin
-            clientId={process.env.REACT_APP_CLIENT_ID}
+            clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
             render={(renderProps) => (
               <button 
                 onClick={renderProps.onClick} 

@@ -54,6 +54,14 @@ const chatsSlice = createSlice({
     [fetchChats.fulfilled]: (state, { payload }) => {
       state.chats = payload;
       state.isLoading = false;
+      
+      // Instantly sync active chat if open
+      if (state.activeChat && state.activeChat._id) {
+        const updatedActiveChat = payload.find(c => c._id === state.activeChat._id);
+        if (updatedActiveChat) {
+          state.activeChat = updatedActiveChat;
+        }
+      }
     },
     [fetchChats.rejected]: (state) => {
       state.isLoading = false;
