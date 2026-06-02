@@ -25,7 +25,7 @@ function Login() {
       setIsLoading(false);
       if (response.data.token) {
         localStorage.setItem("userToken", response.data.token);
-        pageRoute("/chats");
+        window.location.href = "/chats";
       }
     }
   };
@@ -47,7 +47,7 @@ function Login() {
         if (response?.data?.token) {
           localStorage.setItem("userToken", response.data.token);
           toast.success("Successfully logged in!");
-          pageRoute("/chats");
+          window.location.href = "/chats";
         } else {
           toast.error(response?.data?.error || response?.data?.message || "Invalid Credentials!");
           setFormData({ ...formData, password: "" });

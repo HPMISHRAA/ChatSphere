@@ -33,7 +33,7 @@ function Regsiter() {
         if (response?.data?.token) {
           localStorage.setItem("userToken", response.data.token);
           toast.success("Successfully Registered 😍");
-          pageRoute("/chats");
+          window.location.href = "/chats";
         } else {
           toast.error(response?.data?.error || "User already exists or invalid details!");
         }
@@ -56,7 +56,7 @@ function Regsiter() {
       setIsLoading(false);
       if (response.data.token) {
         localStorage.setItem("userToken", response.data.token);
-        pageRoute("/chats");
+        window.location.href = "/chats";
       }
     }
   };
