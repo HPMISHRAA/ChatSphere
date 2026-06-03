@@ -12,7 +12,9 @@ import userModel from './models/userModel.js';
 
 const app = express();
 const corsConfig = {
-  origin: process.env.BASE_URL,
+  origin: (origin, callback) => {
+    callback(null, true);
+  },
   credentials: true,
 };
 const PORT=process.env.PORT || 8000
