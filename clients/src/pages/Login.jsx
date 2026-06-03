@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { GoogleLogin } from "react-google-login";
 import { gapi } from "gapi-script";
 import { googleAuth, loginUser, validUser } from '../apis/auth';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from 'react-toastify';
@@ -16,7 +16,7 @@ function Login() {
   const [formData, setFormData] = useState(defaultData);
   const [isLoading, setIsLoading] = useState(false);
   const [showPass, setShowPass] = useState(false);
-  const pageRoute = useNavigate();
+
 
   const googleSuccess = async (res) => {
     if (res?.profileObj) {
